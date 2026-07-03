@@ -1,0 +1,11 @@
+s = 'ЗдравстВуйте, гоСти! '
+s1 = '12345'
+
+print(s.islower())
+print(s.isupper())
+print(s.isalgha())
+print(s.isdigit())
+print(s.isnumeric())
+print(s.isnum())
+print(s.startswith('Зд'))
+print(s.endswith('Зд'))
