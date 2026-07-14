@@ -24,17 +24,23 @@ def update_t_label(event):
 def exchange():
     target_code = target_combobox.get()
     base_code = base_combobox.get()
+    base2_code = base_combobox2.get()
 
-    if target_code and base_code:
+    if target_code and base_code and base2_code:
         try:
             response = requests.get(f'https://open.er-api.com/v6/latest/{base_code}')
             response.raise_for_status()
             data = response.json()
+            response2 = requests.get(f'https://open.er-api.com/v6/latest/{base2_code}')
+            response2.raise_for_status()
+            data2 = response2.json()
             if target_code in data['rates']:
                 exchange_rate = data['rates'][target_code]
                 base = currencies[base_code]
+                base2 = currencies[base2_code]
+
                 target = currencies[target_code]
-                mb.showinfo("Курс обмена", f"Курс {exchange_rate:.2f} {target} за 1 {base}")
+                mb.showinfo("Курс обмена", f"Курс {exchange_rate:.2f} {target} за 1 {base}\n Курс {exchange_rate:.2f} {target} за 1 {base2}")
             else:
                 mb.showerror("Ошибка", f"Валюта {target_code} не найдена")
         except Exception as e:
@@ -79,9 +85,6 @@ Label(text="Целевая валюта:").pack(padx=10, pady=5)
 target_combobox = ttk.Combobox(values=list(currencies.keys()))
 target_combobox.pack(padx=10, pady=5)
 target_combobox.bind("<<ComboboxSelected>>", update_t_label)
-
-# currency_label = ttk.Label()
-# currency_label.pack(padx=10, pady=10)
 
 t_label = ttk.Label()
 t_label.pack(padx=10, pady=10)
