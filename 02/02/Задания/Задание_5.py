@@ -11,6 +11,11 @@ def update_b_label(event):
     name = currencies[code]
     b_label.config(text=name)
 
+def update_2b_label(event):
+    code = base_combobox2.get()
+    name = currencies[code]
+    b_label2.config(text=name)
+
 def update_t_label(event):
     code = target_combobox.get()
     name = currencies[code]
@@ -52,7 +57,7 @@ currencies = {
 
 window = Tk()
 window.title("Курс обмена валюты к доллару")
-window.geometry("360x220")
+window.geometry("360x420")
 
 Label(text="Базовая валюта:").pack(padx=10, pady=5)
 base_combobox = ttk.Combobox(values=list(currencies.keys()))
@@ -62,13 +67,21 @@ base_combobox.bind("<<ComboboxSelected>>", update_b_label)
 b_label = ttk.Label()
 b_label.pack(padx=10, pady=10)
 
+Label(text="Вторая базовая валюта:").pack(padx=10, pady=5)
+base_combobox2 = ttk.Combobox(values=list(currencies.keys()))
+base_combobox2.pack(padx=10, pady=5)
+base_combobox2.bind("<<ComboboxSelected>>", update_2b_label)
+
+b_label2 = ttk.Label()
+b_label2.pack(padx=10, pady=10)
+
 Label(text="Целевая валюта:").pack(padx=10, pady=5)
 target_combobox = ttk.Combobox(values=list(currencies.keys()))
 target_combobox.pack(padx=10, pady=5)
 target_combobox.bind("<<ComboboxSelected>>", update_t_label)
 
-currency_label = ttk.Label()
-currency_label.pack(padx=10, pady=10)
+# currency_label = ttk.Label()
+# currency_label.pack(padx=10, pady=10)
 
 t_label = ttk.Label()
 t_label.pack(padx=10, pady=10)
