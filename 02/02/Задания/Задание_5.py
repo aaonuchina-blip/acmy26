@@ -38,7 +38,6 @@ def exchange():
                 exchange_rate = data['rates'][target_code]
                 base = currencies[base_code]
                 base2 = currencies[base2_code]
-
                 target = currencies[target_code]
                 mb.showinfo("Курс обмена", f"Курс {exchange_rate:.2f} {target} за 1 {base}\n Курс {exchange_rate:.2f} {target} за 1 {base2}")
             else:
