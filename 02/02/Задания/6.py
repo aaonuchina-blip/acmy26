@@ -53,7 +53,7 @@ def show_prod(event):
         img_data = img_response.content
         img_stream = BytesIO(img_data)
         img = Image.open(img_stream)
-        img = img.resize((64, 64), Image.Resampling.LANCZOS)
+        img = img.resize((150, 150), Image.Resampling.LANCZOS)
 
         l_img.image = ImageTk.PhotoImage(img)
         l_img.config(image=l_img.image)
@@ -61,7 +61,7 @@ def show_prod(event):
         l_img.config(image="", text="[Нет иконки]")
 
 root = Tk()
-root.geometry('700x600')
+root.geometry('400x400')
 root.title('Курс криптовалют')
 mainmenu = Menu(root)
 root.config(menu=mainmenu)
@@ -79,15 +79,11 @@ combo = ttk.Combobox(root, width=50, values=titles, state="readonly")
 combo.pack(padx=10, pady=15)
 combo.bind("<<ComboboxSelected>>", show_prod)
 
-
-label = ttk.Label(root, font=('Arial', 10, 'bold'), justify=CENTER)
+label = ttk.Label(root, font=('Arial', 15, 'bold'), justify=CENTER)
 label.pack(pady=10)
 l_img = ttk.Label(root)
 l_img.pack(pady=10)
-
-b_enter= Button(root, text='Загрузить криптовалюты', command=find_curr)
+b_enter= Button(root, text='Загрузить/обновить криптовалюты', command=find_curr)
 b_enter.pack(pady=10)
-
-
 
 root.mainloop()
